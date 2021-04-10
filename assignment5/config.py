@@ -2,6 +2,7 @@
 # config.py
 
 """
+This module is used for configuration
 """
 _UNIGENE_DIR = "/data/PROGRAMMING/assignment5"
 _UNIGENE_FILE_ENDING = "unigene"

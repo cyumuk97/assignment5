@@ -2,7 +2,7 @@
 # my_io.py
 
 """
-
+This module uses config module
 """
 
 import os
