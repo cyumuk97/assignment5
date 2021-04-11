@@ -12,6 +12,7 @@ import argparse
 import re
 import sys
 
+
 def main():
     """
     Main function
@@ -20,24 +21,31 @@ def main():
     host = args.HOST
     gene = args.GENE
 
-    name = modify_host_name(host)
 
+    name = modify_host_name(host)
+    print("name is " + name)
 
     filename = "/".join((config.get_unigene_directory(), host, gene + "." +
         config.get_unigene_extension()))
 
-    if my_io.is_valid_gene_file_name(filename):
-        print(f"\nFound Gene {gene} for {host}")
+    if host != "":
 
-    else:
-        print("Not found")
-        print(f"Gene {gene} does not exist for {host}. exiting now...", file=sys.stderr)
-        sys.exit()
+        if my_io.is_valid_gene_file_name(filename):
+            print(f"\nFound Gene {gene} for {host}")
 
-    #data = get_gene_data(filename)
+        else:
+            print("Not found")
+            print(f"Gene {gene} does not exist for {host}. exiting now...", file=sys.stderr)
+            sys.exit()
+
+        data1 = get_gene_data(filename)
+
+        print_output(host, gene, data1)
     
-    if host == "" and gene == "":
-        print_output(host, gene, data)
+    else:
+        data2 = get_gene_data(filename)
+        print_output("Human", "TGMI1", data2)
+
 
 def modify_host_name(host):
     """
@@ -64,8 +72,13 @@ def _print_host_directories():
 
     num = 1
     for key in host:
-        print(str(num) + "." + host[key])
+        key2 = None
+        if host[key] != key2:
+            print(str(num) + "." + host[key])
+        
+        key2 = host[key]
         num += 1
+
 
     print("Here is a (non-case sensitive) list of available Hosts by common name")
 
@@ -78,13 +91,11 @@ def get_gene_data(filename):
     """
     Returns a sorted list of the tissues in existing filename
     """
-    my_io.is_valid_gene_file_name(filename)
     new = my_io.get_fh(filename)
 
-    for line in new:
-        match = re.search("EXPRESS", line)
-        if match:
-            tissue_string = match.group(1)
+    match = re.search("EXPRESS", new)
+    if match:
+        tissue_string = match.group(1)
 
     return tissue_string
 
@@ -97,6 +108,7 @@ def print_output(host, gene, data):
     print("In " + host + ", There are " + str(len(data)) + " tissues that " + gene + " is expressed in:")
     print(data)
 
+
 def get_cli_args():
     """
     Gets command line options using argparse
@@ -105,19 +117,20 @@ def get_cli_args():
     parser = argparse.ArgumentParser(
             description='Give the Host and Gene name')
 
-    parser.add_argument('-host', 'HOST',
+    parser.add_argument('-host', '-HOST',
                        dest='HOST',
                        type=str,
                        help='Name of Host',
-                       required=True)
+                       required=False)
             
-    parser.add_argument('-gene', 'GENE',
+    parser.add_argument('-gene', '-GENE',
                        dest='GENE',
                        type=str,
                        help='Name of Gene',
-                       required=True)
+                       required=False)
 
     return parser.parse_args()
+
 
 if __name__ == '__main__':
     main()

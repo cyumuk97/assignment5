@@ -25,6 +25,7 @@ def get_fh(filename=None, mode=None):
         config.get_error_string_4_TypeError()
         raise err
 
+
 def is_valid_gene_file_name(filename):
     """
     Checks if filename exists
