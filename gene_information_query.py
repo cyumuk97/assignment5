@@ -21,6 +21,7 @@ def main():
     host = args.HOST
     gene = args.GENE
 
+    # If no arguments are passed
     if host is None:
         new = "/".join((config.get_unigene_directory(), "Homo_sapiens",
                         "TGM1" + "." + config.get_unigene_extension()))
@@ -67,22 +68,29 @@ def _print_host_directories():
     host = config.get_host_keywords()
 
     print("Either the Host Name you are searching for is not in the database")
-    print("or if you are trying to use the scientific name please put\
-          the name in double quotes:")
+    print("\n")
+    print("or if you are trying to use the scientific name please put" +
+          " the name in double quotes:")
+    print("\n")
     print("Scientific name")
-    print("Here is a (non-case sensitive) list of available Hosts by\
-          scientific name")
+    print("\n")
+    print("Here is a (non-case sensitive) list of available Hosts by" +
+          " scientific name")
+    print("\n")
 
     num = 1
+    key2 = ""
     for key in host:
-        key2 = None
         if host[key] != key2:
             print(str(num) + "." + host[key])
+            num += 1
         key2 = host[key]
-        num += 1
 
-    print("Here is a (non-case sensitive) list of available Hosts by\
-          common name")
+    print("\n")
+
+    print("Here is a (non-case sensitive) list of available Hosts by" +
+          " common name")
+    print("\n")
 
     count = 1
     for key in host:
@@ -101,12 +109,10 @@ def get_gene_data(filename):
         match = re.search("^EXPRESS", line)
         if match:
             tissue_string = line.split('|')
-    print("tissue 1 ")
-    print(tissue_string)
     tissue_string[0] = tissue_string[0].replace("EXPRESS", '').lstrip()
 
     tissue_string = sorted(tissue_string)
-    print(tissue_string)
+
     return tissue_string
 
 
@@ -118,7 +124,7 @@ def print_output(host, gene, data):
           " tissues that " + gene + " is expressed in:")
     num = 1
     for name in data:
-        print(str(num) + "." + name)
+        print(str(num) + "." + name.lstrip().capitalize())
         num += 1
 
 
