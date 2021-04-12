@@ -8,6 +8,7 @@ This module uses config module
 import os
 from assignment5 import config
 
+
 def get_fh(filename=None, mode=None):
     """
     Opens an input file and passes back a file object

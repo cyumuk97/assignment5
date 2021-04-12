@@ -5,8 +5,6 @@
 Test for module config.py
 """
 
-import os
-import pytest
 from assignment5 import config
 
 _UNIGENE_DIR = "/data/PROGRAMMING/assignment5"
@@ -21,24 +19,24 @@ rattus_norvegicus = "Rattus_norvegicus"
                         
 # Dictionary                            
 keywords = {
-        "Homo sapiens":homo_sapiens,
-        "Human":homo_sapiens,
-        "Humans":homo_sapiens,
-        "Bos taurus":bos_taurus,
+        "Homo sapiens": homo_sapiens,
+        "Human": homo_sapiens,
+        "Humans": homo_sapiens,
+        "Bos taurus": bos_taurus,
         "Cow": bos_taurus,
         "Cows": bos_taurus,
-        "Equus caballus":equus_caballus,
-        "Horse":equus_caballus,
-        "Horses":equus_caballus,
-        "Mus musculus":mus_musculus,
-        "Mouse":mus_musculus,
-        "Mice":mus_musculus,
-        "Ovis aries":ovis_aries,
-        "Sheep":ovis_aries,
-        "Sheeps":ovis_aries,
-        "Rattus norvegicus":rattus_norvegicus,
-        "Rat":rattus_norvegicus,
-        "Rats":rattus_norvegicus
+        "Equus caballus": equus_caballus,
+        "Horse": equus_caballus,
+        "Horses": equus_caballus,
+        "Mus musculus": mus_musculus,
+        "Mouse": mus_musculus,
+        "Mice": mus_musculus,
+        "Ovis aries": ovis_aries,
+        "Sheep": ovis_aries,
+        "Sheeps": ovis_aries,
+        "Rattus norvegicus": rattus_norvegicus,
+        "Rat": rattus_norvegicus,
+        "Rats": rattus_norvegicus
         }
 
 
